@@ -1,43 +1,68 @@
-var SeaCreature = function(name, photo) {
+var SeaCreature = function(name, photo, color) {
 	this.name = name;
 	this.photo = photo;
-  this.votes = 0;
+  this.color = color;
+  this.value = 0;
 	seaCreatures.push(this);
 }
 
 var seaCreatures = [];
 
-var borgTube = new SeaCreature('borgTube', 'img/Borg-Tube.jpg');
-var deepSeaJellyfish = new SeaCreature('deepSeaJellyfish', 'img/deep sea jellyfish.jpg');
-var dumboOctopus = new SeaCreature('dumboOctopus', 'img/dumbo-octopus.jpg');
-var frillShark = new SeaCreature('frillShark', 'img/frill shark.jpg');
-var longFaceFish = new SeaCreature('longFaceFish', 'img/long face fish.jpg');
-var orangeJaws = new SeaCreature('orangeJaws', 'img/orange jaws.jpg');
-var pinkSalamander = new SeaCreature('pinkSalamander', 'img/pink salamander.jpg');
-var satchmoFish = new SeaCreature('satchmoFish', 'img/satchmo fish.jpg');
-var seaCucumber = new SeaCreature('seaCucumber', 'img/sea cucumber.jpg');
-var toothFish = new SeaCreature('toothFish', 'img/tooth fish.jpg');
-var whaFish = new SeaCreature('whaFish', 'img/wha-fish.jpg');
-var whoKnowsWhat = new SeaCreature('whoKnowsWhat', 'img/who knows what.jpg');
+var borgTube = new SeaCreature('borgTube', 'img/Borg-Tube.jpg', 'red');
+var deepSeaJellyfish = new SeaCreature('deepSeaJellyfish', 'img/deep sea jellyfish.jpg', 'orange');
+var dumboOctopus = new SeaCreature('dumboOctopus', 'img/dumbo-octopus.jpg', 'blue');
+var frillShark = new SeaCreature('frillShark', 'img/frill shark.jpg', 'purple');
+var longFaceFish = new SeaCreature('longFaceFish', 'img/long face fish.jpg', 'green');
+var orangeJaws = new SeaCreature('orangeJaws', 'img/orange jaws.jpg', 'gray');
+var pinkSalamander = new SeaCreature('pinkSalamander', 'img/pink salamander.jpg', 'BlanchedAlmond');
+var satchmoFish = new SeaCreature('satchmoFish', 'img/satchmo fish.jpg', 'black');
+var seaCucumber = new SeaCreature('seaCucumber', 'img/sea cucumber.jpg', 'gold');
+var toothFish = new SeaCreature('toothFish', 'img/tooth fish.jpg', 'silver');
+var whaFish = new SeaCreature('whaFish', 'img/wha-fish.jpg', 'brown');
+var whoKnowsWhat = new SeaCreature('whoKnowsWhat', 'img/who knows what.jpg', 'lime');
 
-function randPhoto() {
-	var x = Math.floor(Math.random() * seaCreatures.length);
-	return seaCreatures[x]
+var Tracker = function () {
+
+	this.randPhoto = function() {
+		var x = Math.floor(Math.random() * seaCreatures.length);
+		return seaCreatures[x];
+	}
+
+	this.getPhotos = function() {
+		pix1 = document.getElementById('img1');
+		photo1 = this.randPhoto();
+		pix1.src = photo1.photo;
+
+		pix2 = document.getElementById('img2');
+		photo2 = this.randPhoto();
+		if (photo2.photo === photo1.photo) {
+			photo2 = this.randPhoto();
+		}
+		pix2.src = photo2.photo;  
+	}
+
+	this.getVotes = function(photo) {
+		photo.value = photo.value + 1;
+		console.log(photo.name + ' vote increased to ' + photo.value);
+		var context = document.getElementById('weirdSea').getContext('2d');
+		var weirdSeaChart = new Chart(context).Doughnut(seaCreatures, {
+		animationEasing : "easeOutBounce" 
+	});
+		this.getPhotos();
+	}
 }
 
-var pix1 = document.getElementById('pix1');
-var photo1 = document.createElement('img');
-photo1.setAttribute('src', randPhoto().photo);
-pix1.appendChild(photo1);
+var pix1, pix2, photo1, photo2;
 
-var pix2 = document.getElementById('pix2');
-var photo2 = document.createElement('img');
-photo2.setAttribute('src', randPhoto().photo);
-pix2.appendChild(photo2);
+var tracker = new Tracker();
+tracker.getPhotos();
 
-var button1 = document.getElementById('button1');
-button1.addEventListener('click', tally);
+pix1.addEventListener('click', function() {
+	tracker.getVotes(photo1); 
+});
 
-var button2 = document.getElementById('button2');
-button2.addEventListener('click', tally);
+pix2.addEventListener('click', function() {
+	tracker.getVotes(photo2);
+});
+
 
