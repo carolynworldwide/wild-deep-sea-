@@ -1,4 +1,15 @@
-<link href='https://fonts.googleapis.com/css?family=Creepster' rel='stylesheet' type='text/css'>
-font-family: 'Creepster', cursive;
+body {
+	font-family: "Creepster", cursive;	
+	background-color: #A3F5AD
+}
+h1 {
+	font-family: "Creepster", cursive;	
+	font-size: 36px;	
+	color: #332E42;
+}
+h2 {
+	font-family: "Creepster", cursive;	
+	font-size: 24px;
+	color: #4D5159;
+}
 
-link href='https://color.adobe.com/Copy-of-Ghost-house-color-theme-6929931/?showPublished=true'
