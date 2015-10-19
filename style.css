@@ -1,15 +1,21 @@
 body {
-	font-family: "Creepster", cursive;	
-	background-color: #A3F5AD
+font-family: "Creepster", cursive;
+background-color: #A3F5AD
 }
 h1 {
-	font-family: "Creepster", cursive;	
-	font-size: 36px;	
-	color: #332E42;
+font-family: "Creepster", cursive;
+font-size: 36px;
+color: #332E42;
+text-align: center;
 }
 h2 {
-	font-family: "Creepster", cursive;	
-	font-size: 24px;
-	color: #4D5159;
+font-family: "Creepster", cursive;
+font-size: 24px;
+color: #4D5159;
+text-align: center;
 }
-
+p {
+font-size: 30px;
+color: #4D5159;
+text-align: center;
+}

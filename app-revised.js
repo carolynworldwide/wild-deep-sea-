@@ -1,8 +1,9 @@
-var SeaCreature = function(name, photo, color) {
+var SeaCreature = function(name, photo, color, label) {
     this.name = name;
     this.photo = photo;
-  this.color = color;
-  this.value = 0;
+    this.color = color;
+    this.label = label;
+    this.value = 0;
     seaCreatures.push(this);
 }
 
@@ -34,9 +35,14 @@ var Tracker = function () {
     }
 }
 
+var context = document.getElementById('weirdSea').getContext('2d');
+var weirdSeaChart = new Chart(context).Doughnut(seaCreatures, {animationEasing : "easeOutBounce"});
+
 function makeChart() {
-    var context = document.getElementById('weirdSea').getContext('2d');
-    var weirdSeaChart = new Chart(context).Doughnut(seaCreatures, {animationEasing : "easeOutBounce"});
+if (weirdSeaChart)
+weirdSeaChart.destroy();
+context = document.getElementById('weirdSea').getContext('2d');
+weirdSeaChart = new Chart(context).Doughnut(seaCreatures, {animationEasing : "easeOutBounce"});
 }
 
 function loadSeaCreatures() {
@@ -52,18 +58,18 @@ if (localStorage.getItem('keySavedCreatures')) {
     makeChart();
 } else {
     seaCreatures = [];
-    var borgTube = new SeaCreature('borgTube', 'img/Borg-Tube.jpg', 'red');
-    var deepSeaJellyfish = new SeaCreature('deepSeaJellyfish', 'img/deep sea jellyfish.jpg', 'orange');
-    var dumboOctopus = new SeaCreature('dumboOctopus', 'img/dumbo-octopus.jpg', 'blue');
-    var frillShark = new SeaCreature('frillShark', 'img/frill shark.jpg', 'purple');
-    var longFaceFish = new SeaCreature('longFaceFish', 'img/long face fish.jpg', 'green');
-    var orangeJaws = new SeaCreature('orangeJaws', 'img/orange jaws.jpg', 'gray');
-    var pinkSalamander = new SeaCreature('pinkSalamander', 'img/pink salamander.jpg', 'BlanchedAlmond');
-    var satchmoFish = new SeaCreature('satchmoFish', 'img/satchmo fish.jpg', 'black');
-    var seaCucumber = new SeaCreature('seaCucumber', 'img/sea cucumber.jpg', 'gold');
-    var toothFish = new SeaCreature('toothFish', 'img/tooth fish.jpg', 'silver');
-    var whaFish = new SeaCreature('whaFish', 'img/wha-fish.jpg', 'brown');
-    var whoKnowsWhat = new SeaCreature('whoKnowsWhat', 'img/who knows what.jpg', 'lime');
+    var borgTube = new SeaCreature('borgTube', 'img/Borg-Tube.jpg', 'red', 'Borg Tube');
+    var deepSeaJellyfish = new SeaCreature('deepSeaJellyfish', 'img/deep sea jellyfish.jpg', 'orange', 'Deep Sea Jellyfish');
+    var dumboOctopus = new SeaCreature('dumboOctopus', 'img/dumbo-octopus.jpg', 'blue', 'Dumbo Octopus');
+    var frillShark = new SeaCreature('frillShark', 'img/frill shark.jpg', 'purple', 'Frill Shark');
+    var longFaceFish = new SeaCreature('longFaceFish', 'img/long face fish.jpg', 'green', 'Long Face Fish');
+    var orangeJaws = new SeaCreature('orangeJaws', 'img/orange jaws.jpg', 'gray', 'Orange Jaws');
+    var pinkSalamander = new SeaCreature('pinkSalamander', 'img/pink salamander.jpg', 'BlanchedAlmond', 'Pink Salamander');
+    var satchmoFish = new SeaCreature('satchmoFish', 'img/satchmo fish.jpg', 'black', 'Satchmo Fish');
+    var seaCucumber = new SeaCreature('seaCucumber', 'img/sea cucumber.jpg', 'gold', 'Sea Cucumber');
+    var toothFish = new SeaCreature('toothFish', 'img/tooth fish.jpg', 'silver', 'Tooth Fish');
+    var whaFish = new SeaCreature('whaFish', 'img/wha-fish.jpg', 'brown', 'Wha Fish');
+    var whoKnowsWhat = new SeaCreature('whoKnowsWhat', 'img/who knows what.jpg', 'lime', 'Who Knows What Fish');
     var tracker = new Tracker();
     tracker.getPhotos();
 }
