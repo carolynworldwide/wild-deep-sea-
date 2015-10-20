@@ -27,6 +27,13 @@ var Tracker = function () {
             photo2 = this.randPhoto();
         }
         pix2.src = photo2.photo;
+
+
+        var label1 = document.getElementById('img1Text');
+        label1.innerHTML = photo1.label;
+
+        var label2 = document.getElementById('img2Text');
+        label2.innerHTML = photo2.label;
     }
 
     this.getVotes = function(photo) {
@@ -68,7 +75,7 @@ if (localStorage.getItem('keySavedCreatures')) {
     var satchmoFish = new SeaCreature('satchmoFish', 'img/satchmo fish.jpg', 'black', 'Satchmo Fish');
     var seaCucumber = new SeaCreature('seaCucumber', 'img/sea cucumber.jpg', 'gold', 'Sea Cucumber');
     var toothFish = new SeaCreature('toothFish', 'img/tooth fish.jpg', 'silver', 'Tooth Fish');
-    var whaFish = new SeaCreature('whaFish', 'img/wha-fish.jpg', 'brown', 'Wha Fish');
+    var whaFish = new SeaCreature('whaFish', 'img/wha-fish.jpg', 'brown', 'Wha? Fish');
     var whoKnowsWhat = new SeaCreature('whoKnowsWhat', 'img/who knows what.jpg', 'lime', 'Who Knows What Fish');
     var tracker = new Tracker();
     tracker.getPhotos();
