@@ -1,13 +1,13 @@
-var SeaCreature = function(name, photo, color, label) {
+var SeaCreature = function(name, photo, color, label) { 
     this.name = name;
     this.photo = photo;
     this.color = color;
     this.label = label;
     this.value = 0;
-    seaCreatures.push(this);
+    seaCreatures.push(this); 
 }
 
-var seaCreatures = [];
+var seaCreatures = []; 
 
 var Tracker = function () {
 
@@ -17,17 +17,16 @@ var Tracker = function () {
     }
 
     this.getPhotos = function() {
-        pix1 = document.getElementById('img1');
+        pix1 = document.getElementById('img1'); 
         photo1 = this.randPhoto();
         pix1.src = photo1.photo;
 
         pix2 = document.getElementById('img2');
         photo2 = this.randPhoto();
-        if (photo2.photo === photo1.photo) {
+        while (photo2.photo === photo1.photo) {
             photo2 = this.randPhoto();
-        }
+            }
         pix2.src = photo2.photo;
-
 
         var label1 = document.getElementById('img1Text');
         label1.innerHTML = photo1.label;
@@ -46,10 +45,10 @@ var context = document.getElementById('weirdSea').getContext('2d');
 var weirdSeaChart = new Chart(context).Doughnut(seaCreatures, {animationEasing : "easeOutBounce"});
 
 function makeChart() {
-if (weirdSeaChart)
-weirdSeaChart.destroy();
-context = document.getElementById('weirdSea').getContext('2d');
-weirdSeaChart = new Chart(context).Doughnut(seaCreatures, {animationEasing : "easeOutBounce"});
+    if (weirdSeaChart)
+    weirdSeaChart.destroy();
+    context = document.getElementById('weirdSea').getContext('2d');
+    weirdSeaChart = new Chart(context).Doughnut(seaCreatures, {animationEasing : "easeOutBounce"});
 }
 
 function loadSeaCreatures() {
