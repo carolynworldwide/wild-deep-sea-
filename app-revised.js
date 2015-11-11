@@ -39,16 +39,11 @@ var Tracker = function () {
         photo.value = photo.value + 1;
         console.log(photo.name + ' vote increased to ' + photo.value);
     }
-}
-
-var context = document.getElementById('weirdSea').getContext('2d');
-var weirdSeaChart = new Chart(context).Doughnut(seaCreatures, {animationEasing : "easeOutBounce"});
+}   
 
 function makeChart() {
-    if (weirdSeaChart)
-    weirdSeaChart.destroy();
-    context = document.getElementById('weirdSea').getContext('2d');
-    weirdSeaChart = new Chart(context).Doughnut(seaCreatures, {animationEasing : "easeOutBounce"});
+    var context = document.getElementById('weirdSea').getContext('2d');
+    var weirdSeaChart = new Chart(context).Doughnut(seaCreatures, {animationEasing : "easeOutBounce"});
 }
 
 function loadSeaCreatures() {
@@ -63,7 +58,6 @@ if (localStorage.getItem('keySavedCreatures')) {
     tracker.getPhotos();
     makeChart();
 } else {
-    seaCreatures = [];
     var borgTube = new SeaCreature('borgTube', 'img/Borg-Tube.jpg', 'red', 'Borg Tube');
     var deepSeaJellyfish = new SeaCreature('deepSeaJellyfish', 'img/deep sea jellyfish.jpg', 'orange', 'Deep Sea Jellyfish');
     var dumboOctopus = new SeaCreature('dumboOctopus', 'img/dumbo-octopus.jpg', 'blue', 'Dumbo Octopus');
